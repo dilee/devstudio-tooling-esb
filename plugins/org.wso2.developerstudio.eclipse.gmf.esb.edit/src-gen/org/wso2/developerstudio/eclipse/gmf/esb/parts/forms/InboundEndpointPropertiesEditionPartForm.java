@@ -351,6 +351,8 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
     
     protected Composite filterHTTPWorkerSubPropertiesGroup;
     protected Composite filterHTTPThreadSubPropertiesGroup;
+    
+    protected Composite filterFileAdvancedSubPropertiesGroup;
     // End of user code
 
     protected EMFComboViewer transportRabbitMqConsumerQosType;
@@ -807,44 +809,44 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSFileProcessInterval) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSFileProcessIntervalText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSFileProcessIntervalText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSFileProcessCount) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSFileProcessCountText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSFileProcessCountText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSLocking) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSLockingEMFComboViewer(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSLockingEMFComboViewer(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSMaxRetryCount) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSMaxRetryCountText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSMaxRetryCountText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSMoveAfterFailedMove) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSMoveAfterFailedMoveText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSMoveAfterFailedMoveText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSReconnectTimeout) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSReconnectTimeoutText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSReconnectTimeoutText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
@@ -872,135 +874,135 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSActionAfterProcess) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSActionAfterProcessEMFComboViewer(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSActionAfterProcessEMFComboViewer(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSMoveAfterProcess) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSMoveAfterProcessText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSMoveAfterProcessText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSActionAfterErrors) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSActionAfterErrorsEMFComboViewer(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSActionAfterErrorsEMFComboViewer(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSMoveAfterErrors) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSMoveAfterErrorsText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSMoveAfterErrorsText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSFailedRecordsFileName) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSFailedRecordsFileNameText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSFailedRecordsFileNameText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSFailedRecordsFileDestination) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSFailedRecordsFileDestinationText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSFailedRecordsFileDestinationText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSMoveFailedRecordTimestampFormat) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSMoveFailedRecordTimestampFormatText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSMoveFailedRecordTimestampFormatText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSFailedRecordNextRetryDuration) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSFailedRecordNextRetryDurationText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSFailedRecordNextRetryDurationText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSActionAfterFailure) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSActionAfterFailureEMFComboViewer(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSActionAfterFailureEMFComboViewer(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSMoveAfterFailure) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSMoveAfterFailureText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSMoveAfterFailureText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSReplyFileURI) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSReplyFileURIText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSReplyFileURIText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSReplyFileName) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSReplyFileNameText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSReplyFileNameText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSAutoLockRelease) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSAutoLockReleaseCheckbox(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSAutoLockReleaseCheckbox(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSAutoLockReleaseInterval) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSAutoLockReleaseIntervalText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSAutoLockReleaseIntervalText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSLockReleaseSameNode) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSLockReleaseSameNodeCheckbox(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSLockReleaseSameNodeCheckbox(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSDistributedLock) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSDistributedLockCheckbox(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSDistributedLockCheckbox(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSStreaming) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSStreamingCheckbox(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSStreamingCheckbox(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSBuild) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSBuildCheckbox(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSBuildCheckbox(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSDistributedTimeout) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSDistributedTimeoutText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSDistributedTimeoutText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
@@ -1132,37 +1134,37 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSMoveTimestampFormat) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSMoveTimestampFormatText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSMoveTimestampFormatText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSFileSortAttribute) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSFileSortAttributeEMFComboViewer(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSFileSortAttributeEMFComboViewer(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSFileSortAscending) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSFileSortAscendingCheckbox(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSFileSortAscendingCheckbox(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSSubFolderTimestampFormat) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSSubFolderTimestampFormatText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSSubFolderTimestampFormatText(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.transportVFSCreateFolder) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createTransportVFSCreateFolderCheckbox(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterFileAdvancedSubPropertiesGroup.getChildren();
+                    Composite composite = createTransportVFSCreateFolderCheckbox(widgetFactory, filterFileAdvancedSubPropertiesGroup);
+                    Control[] newControls = filterFileAdvancedSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(filePropertyIDs, previousControls, newControls);
                     return composite;
                 }
@@ -3559,11 +3561,12 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
     }
 
     protected Composite createTransportVFSFileNamePatternText(FormToolkit widgetFactory, Composite parent) {
-        createDescription(parent, EsbViewsRepository.InboundEndpoint.Properties.transportVFSFileNamePattern,
+        filterFileAdvancedSubPropertiesGroup = EEFPropertyViewUtil.createSubsectionGroup(widgetFactory, parent, "Advanced", false);
+        createDescription(filterFileAdvancedSubPropertiesGroup, EsbViewsRepository.InboundEndpoint.Properties.transportVFSFileNamePattern,
                 EsbMessages.InboundEndpointPropertiesEditionPart_TransportVFSFileNamePatternLabel);
-        transportVFSFileNamePattern = widgetFactory.createText(parent, ""); //$NON-NLS-1$
+        transportVFSFileNamePattern = widgetFactory.createText(filterFileAdvancedSubPropertiesGroup, ""); //$NON-NLS-1$
         transportVFSFileNamePattern.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
-        widgetFactory.paintBordersFor(parent);
+        widgetFactory.paintBordersFor(filterFileAdvancedSubPropertiesGroup);
         GridData transportVFSFileNamePatternData = new GridData(GridData.FILL_HORIZONTAL);
         transportVFSFileNamePattern.setLayoutData(transportVFSFileNamePatternData);
         transportVFSFileNamePattern.addFocusListener(new FocusAdapter() {
@@ -3621,7 +3624,7 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
         EditingUtils.setID(transportVFSFileNamePattern,
                 EsbViewsRepository.InboundEndpoint.Properties.transportVFSFileNamePattern);
         EditingUtils.setEEFtype(transportVFSFileNamePattern, "eef::Text"); //$NON-NLS-1$
-        FormUtils.createHelpButton(widgetFactory, parent,
+        FormUtils.createHelpButton(widgetFactory, filterFileAdvancedSubPropertiesGroup,
                 propertiesEditionComponent.getHelpContent(
                         EsbViewsRepository.InboundEndpoint.Properties.transportVFSFileNamePattern,
                         EsbViewsRepository.FORM_KIND),
