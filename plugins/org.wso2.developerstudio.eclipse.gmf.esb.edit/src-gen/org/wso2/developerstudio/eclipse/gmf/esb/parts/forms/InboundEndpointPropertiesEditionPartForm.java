@@ -348,6 +348,9 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
     private static final String TRANSPORT_JMS_DESTINATION_ACTIVEMQ = "ordersQueue";
     private static final String JAVA_NAMING_PROVIDER_URL_WSO2_BROKER = "conf/jndi.properties";
     private static final String JAVA_NAMING_PROVIDER_URL_ACTIVEMQ = "tcp://localhost:61616";
+    
+    protected Composite filterHTTPWorkerSubPropertiesGroup;
+    protected Composite filterHTTPThreadSubPropertiesGroup;
     // End of user code
 
     protected EMFComboViewer transportRabbitMqConsumerQosType;
@@ -378,14 +381,13 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
      * 
      */
     public Composite createFigure(final Composite parent, final FormToolkit widgetFactory) {
-        ScrolledForm scrolledForm = widgetFactory.createScrolledForm(parent);
-        Form form = scrolledForm.getForm();
+        Form form = widgetFactory.createForm(parent);
         view = form.getBody();
         GridLayout layout = new GridLayout();
         layout.numColumns = 3;
         view.setLayout(layout);
         createControls(widgetFactory, view);
-        return scrolledForm;
+        return form;
     }
 
     /**
@@ -399,10 +401,13 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
         CompositionSequence inboundEndpointStep = new BindingCompositionSequence(propertiesEditionComponent);
         CompositionStep propertiesStep = inboundEndpointStep
                 .addStep(EsbViewsRepository.InboundEndpoint.Properties.class);
-        propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.description);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.commentsList);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.name);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.type);
+        propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.traceEnabled);
+        propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.statisticsEnabled);
+        propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.suspend);        
+        
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.class_);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.protocol);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.inboundEndpointBehaviour);
@@ -548,7 +553,6 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.inboundCxfRmConfigFile);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.enableSSL);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.serviceParameters);
-        propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.suspend);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportRabbitMqConnectionFactory);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportRabbitMqServerHostName);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportRabbitMqServerPort);
@@ -585,6 +589,7 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportRabbitMqConnectionRetryCount);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportRabbitMqConnectionRetryInterval);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportRabbitMqServerRetryInterval);
+        
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.wsInboundPort);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.wsClientSideBroadcastLevel);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.wsOutflowDispatchSequence);
@@ -595,12 +600,12 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.wsPipelineHandlerClass);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportFeedURL);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportFeedType);
-        propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.traceEnabled);
-        propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.statisticsEnabled);
+
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportJMSRetriesBeforeSuspension);
         propertiesStep
                 .addStep(EsbViewsRepository.InboundEndpoint.Properties.transportJMSResetConnectionOnPollingSuspension);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportJMSPollingSuspensionPeriod);
+        
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportMQTTSslKeystoreLocation);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportMQTTSslKeystoreType);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportMQTTSslKeystorePassword);
@@ -608,6 +613,7 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportMQTTSslTruststoreType);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportMQTTSslTruststorePassword);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportMQTTSslVersion);
+        
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.wssSslKeyStoreFile);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.wssSslKeyStorePass);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.wssSslTrustStoreFile);
@@ -619,10 +625,13 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.wsUsePortOffset);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.wssSslProtocols);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.wssSslCipherSuites);
+        
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportRabbitMqConsumerQos);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportRabbitMqConsumerQosKey);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportRabbitMqConsumerQosType);
         propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.transportJMSDBUrl);
+        
+        propertiesStep.addStep(EsbViewsRepository.InboundEndpoint.Properties.description);        
 
         composer = new PartComposer(inboundEndpointStep) {
 
@@ -690,23 +699,23 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.inboundWorkerPoolSizeMax) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createInboundWorkerPoolSizeMaxText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterHTTPWorkerSubPropertiesGroup.getChildren();
+                    Composite composite = createInboundWorkerPoolSizeMaxText(widgetFactory, filterHTTPWorkerSubPropertiesGroup);
+                    Control[] newControls = filterHTTPWorkerSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(HTTPPropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.inboundWorkerThreadKeepAliveSec) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createInboundWorkerThreadKeepAliveSecText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterHTTPWorkerSubPropertiesGroup.getChildren();
+                    Composite composite = createInboundWorkerThreadKeepAliveSecText(widgetFactory, filterHTTPWorkerSubPropertiesGroup);
+                    Control[] newControls = filterHTTPWorkerSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(HTTPPropertyIDs, previousControls, newControls);
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.inboundWorkerPoolQueueLength) {
-                    Control[] previousControls = parent.getChildren();
+                    Control[] previousControls = filterHTTPWorkerSubPropertiesGroup.getChildren();
                     Composite composite = createInboundWorkerPoolQueueLengthText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] newControls = filterHTTPWorkerSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(HTTPPropertyIDs, previousControls, newControls);
                     return composite;
                 }
@@ -718,9 +727,9 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
                     return composite;
                 }
                 if (key == EsbViewsRepository.InboundEndpoint.Properties.inboundThreadId) {
-                    Control[] previousControls = parent.getChildren();
-                    Composite composite = createInboundThreadIdText(widgetFactory, parent);
-                    Control[] newControls = parent.getChildren();
+                    Control[] previousControls = filterHTTPThreadSubPropertiesGroup.getChildren();
+                    Composite composite = createInboundThreadIdText(widgetFactory, filterHTTPThreadSubPropertiesGroup);
+                    Control[] newControls = filterHTTPThreadSubPropertiesGroup.getChildren();
                     EEFPropertyViewUtil.addTableElementsAsList(HTTPPropertyIDs, previousControls, newControls);
                     return composite;
                 }
@@ -2684,11 +2693,12 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
     }
 
     protected Composite createInboundWorkerPoolSizeCoreText(FormToolkit widgetFactory, Composite parent) {
-        createDescription(parent, EsbViewsRepository.InboundEndpoint.Properties.inboundWorkerPoolSizeCore,
+        filterHTTPWorkerSubPropertiesGroup = EEFPropertyViewUtil.createSubsectionGroup(widgetFactory, parent, "Worker", true);
+        createDescription(filterHTTPWorkerSubPropertiesGroup, EsbViewsRepository.InboundEndpoint.Properties.inboundWorkerPoolSizeCore,
                 EsbMessages.InboundEndpointPropertiesEditionPart_InboundWorkerPoolSizeCoreLabel);
-        inboundWorkerPoolSizeCore = widgetFactory.createText(parent, ""); //$NON-NLS-1$
+        inboundWorkerPoolSizeCore = widgetFactory.createText(filterHTTPWorkerSubPropertiesGroup, ""); //$NON-NLS-1$
         inboundWorkerPoolSizeCore.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
-        widgetFactory.paintBordersFor(parent);
+        widgetFactory.paintBordersFor(filterHTTPWorkerSubPropertiesGroup);
         GridData inboundWorkerPoolSizeCoreData = new GridData(GridData.FILL_HORIZONTAL);
         inboundWorkerPoolSizeCore.setLayoutData(inboundWorkerPoolSizeCoreData);
         inboundWorkerPoolSizeCore.addFocusListener(new FocusAdapter() {
@@ -2746,7 +2756,7 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
         EditingUtils.setID(inboundWorkerPoolSizeCore,
                 EsbViewsRepository.InboundEndpoint.Properties.inboundWorkerPoolSizeCore);
         EditingUtils.setEEFtype(inboundWorkerPoolSizeCore, "eef::Text"); //$NON-NLS-1$
-        FormUtils.createHelpButton(widgetFactory, parent,
+        FormUtils.createHelpButton(widgetFactory, filterHTTPWorkerSubPropertiesGroup,
                 propertiesEditionComponent.getHelpContent(
                         EsbViewsRepository.InboundEndpoint.Properties.inboundWorkerPoolSizeCore,
                         EsbViewsRepository.FORM_KIND),
@@ -2980,11 +2990,12 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
     }
 
     protected Composite createInboundThreadGroupIdText(FormToolkit widgetFactory, Composite parent) {
-        createDescription(parent, EsbViewsRepository.InboundEndpoint.Properties.inboundThreadGroupId,
+        filterHTTPThreadSubPropertiesGroup = EEFPropertyViewUtil.createSubsectionGroup(widgetFactory, parent, "Thread", true);
+        createDescription(filterHTTPThreadSubPropertiesGroup, EsbViewsRepository.InboundEndpoint.Properties.inboundThreadGroupId,
                 EsbMessages.InboundEndpointPropertiesEditionPart_InboundThreadGroupIdLabel);
-        inboundThreadGroupId = widgetFactory.createText(parent, ""); //$NON-NLS-1$
+        inboundThreadGroupId = widgetFactory.createText(filterHTTPThreadSubPropertiesGroup, ""); //$NON-NLS-1$
         inboundThreadGroupId.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TEXT_BORDER);
-        widgetFactory.paintBordersFor(parent);
+        widgetFactory.paintBordersFor(filterHTTPThreadSubPropertiesGroup);
         GridData inboundThreadGroupIdData = new GridData(GridData.FILL_HORIZONTAL);
         inboundThreadGroupId.setLayoutData(inboundThreadGroupIdData);
         inboundThreadGroupId.addFocusListener(new FocusAdapter() {
@@ -3041,7 +3052,7 @@ public class InboundEndpointPropertiesEditionPartForm extends SectionPropertiesE
         });
         EditingUtils.setID(inboundThreadGroupId, EsbViewsRepository.InboundEndpoint.Properties.inboundThreadGroupId);
         EditingUtils.setEEFtype(inboundThreadGroupId, "eef::Text"); //$NON-NLS-1$
-        FormUtils.createHelpButton(widgetFactory, parent,
+        FormUtils.createHelpButton(widgetFactory, filterHTTPThreadSubPropertiesGroup,
                 propertiesEditionComponent.getHelpContent(
                         EsbViewsRepository.InboundEndpoint.Properties.inboundThreadGroupId,
                         EsbViewsRepository.FORM_KIND),
