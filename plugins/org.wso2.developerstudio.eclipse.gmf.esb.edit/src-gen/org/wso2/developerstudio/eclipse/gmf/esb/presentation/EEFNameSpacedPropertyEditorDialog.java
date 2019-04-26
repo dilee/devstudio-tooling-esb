@@ -565,7 +565,7 @@ public class EEFNameSpacedPropertyEditorDialog extends Dialog {
         xmlEvaluatorGroup = new Group(dialogShell, SWT.NONE);
         {   
         	FormData xmlEvaluatorGroupBoxLayoutData = new FormData();
-        	xmlEvaluatorGroupBoxLayoutData.top = new FormAttachment(expressionGroup, 2);
+        	xmlEvaluatorGroupBoxLayoutData.top = new FormAttachment(expressionGroup, 4);
         	xmlEvaluatorGroupBoxLayoutData.left = new FormAttachment(1);
         	xmlEvaluatorGroupBoxLayoutData.right = new FormAttachment(99);
         	xmlEvaluatorGroup.setLayoutData(xmlEvaluatorGroupBoxLayoutData);

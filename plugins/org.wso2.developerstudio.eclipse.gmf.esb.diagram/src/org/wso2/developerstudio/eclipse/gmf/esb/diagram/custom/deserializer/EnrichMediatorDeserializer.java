@@ -132,7 +132,8 @@ public class EnrichMediatorDeserializer extends AbstractEsbNodeDeserializer<Abst
                 }
 
                 // vishualEnrich.setSourceXpath(nsp);
-                executeSetValueCommand(ENRICH_MEDIATOR__SOURCE_XPATH, nsp);
+                executeSetValueCommand(ENRICH_MEDIATOR__SOURCE_XPATH, 
+                		createNamespacedPropertyWithJsonPathSupport(source.getXpath()));
 
                 break;
             }
@@ -201,7 +202,8 @@ public class EnrichMediatorDeserializer extends AbstractEsbNodeDeserializer<Abst
                 }
 
                 // vishualEnrich.setTargetXpath(nsp);
-                executeSetValueCommand(ENRICH_MEDIATOR__TARGET_XPATH, nsp);
+                executeSetValueCommand(ENRICH_MEDIATOR__TARGET_XPATH, 
+                		createNamespacedPropertyWithJsonPathSupport(target.getXpath()));
 
                 break;
             }
@@ -228,5 +230,19 @@ public class EnrichMediatorDeserializer extends AbstractEsbNodeDeserializer<Abst
 
         return visualEnrichMediator;
     }
+    
+    private NamespacedProperty createNamespacedPropertyWithJsonPathSupport(SynapsePath path) {
+		NamespacedProperty nsp = EsbFactory.eINSTANCE.createNamespacedProperty();
+		nsp.setPropertyValue(path.toString());
+		nsp.setSupportJsonPaths(true);
+		if (path.getPathType() == SynapsePath.X_PATH) {
+			if (path.getNamespaces() != null) {
+				@SuppressWarnings("unchecked")
+				Map<String, String> map = path.getNamespaces();
+				nsp.setNamespaces(map);
+			}
+		}
+		return nsp;
+	}
 
 }

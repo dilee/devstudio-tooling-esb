@@ -23,15 +23,25 @@ import javax.xml.namespace.QName;
 import org.apache.axiom.om.OMAbstractFactory;
 import org.apache.axiom.om.OMAttribute;
 import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.impl.llom.OMTextImpl;
+import org.apache.axiom.om.OMText;
 import org.apache.commons.lang.StringUtils;
 import org.apache.synapse.Mediator;
 import org.apache.synapse.config.xml.EnrichMediatorFactory;
+import org.apache.synapse.config.xml.SynapsePath;
+import org.apache.synapse.config.xml.SynapsePathFactory;
 import org.apache.synapse.config.xml.SynapseXPathFactory;
 import org.apache.synapse.config.xml.XMLConfigConstants;
 import org.apache.synapse.mediators.elementary.EnrichMediator;
 import org.apache.synapse.mediators.elementary.Source;
 import org.jaxen.JaxenException;
 import org.wso2.developerstudio.eclipse.gmf.esb.internal.persistence.custom.SynapseXPathExt;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
 
 public class EnrichMediatorExtFactory extends EnrichMediatorFactory {
 
@@ -74,6 +84,51 @@ public class EnrichMediatorExtFactory extends EnrichMediatorFactory {
         populateSource(source, sourceEle, mediator);
         populateTarget(target, targetEle, mediator);
         
+        // check whether the inline element of the source is XML
+        boolean isInlineSourceXML = false;
+        if (source.getInlineOMNode() != null) {
+            if (source.getInlineOMNode() instanceof OMText) {
+                String inlineString = ((OMTextImpl) source.getInlineOMNode()).getText();
+                JsonParser parser = new JsonParser();
+                JsonElement element = parser.parse(inlineString);
+                if (!(element instanceof JsonObject || element instanceof JsonArray ||
+                        element instanceof JsonPrimitive)) {
+                    isInlineSourceXML = true;
+                }
+            } else if (source.getInlineOMNode() instanceof OMElement){
+                isInlineSourceXML = true;
+            }
+        }
+        
+        // Check the enrich mediator configuration to see whether it can support JSON natively
+        boolean sourceHasCustom = (source.getSourceType() == EnrichMediator.CUSTOM);
+        boolean targetHasCustom = (target.getTargetType() == EnrichMediator.CUSTOM);
+        boolean enrichHasCustom = (sourceHasCustom || targetHasCustom);
+        boolean sourceHasEnvelope = (source.getSourceType() == EnrichMediator.ENVELOPE);
+        boolean targetHasEnvelope = (target.getTargetType() == EnrichMediator.ENVELOPE);
+        boolean enrichHasEnvelope = (sourceHasEnvelope || targetHasEnvelope);
+
+        boolean sourceHasACustomJsonPath = false;
+        boolean targetHasACustomJsonPath = false;
+
+        if (sourceHasCustom) {
+            sourceHasACustomJsonPath = SynapsePath.JSON_PATH.equals(source.getXpath().getPathType());
+        }
+
+        if (targetHasCustom) {
+            targetHasACustomJsonPath = SynapsePath.JSON_PATH.equals(target.getXpath().getPathType());
+        }
+
+        // conditions where native-json-processing is supported
+        boolean condition1 = (!enrichHasCustom);
+        boolean condition2 = (sourceHasACustomJsonPath && !targetHasCustom);
+        boolean condition3 = (!sourceHasCustom && targetHasACustomJsonPath);
+        boolean condition4 = (sourceHasACustomJsonPath && targetHasACustomJsonPath);
+        boolean condition5 = !enrichHasEnvelope;
+
+        ((EnrichMediator) mediator).setNativeJsonSupportEnabled(!isInlineSourceXML && condition5 && (condition1 || condition2 || condition3 ||
+                condition4));
+        
         addAllCommentChildrenToList(omElement, ((EnrichMediator) mediator).getCommentsList());
 
         return mediator;
@@ -95,7 +150,7 @@ public class EnrichMediatorExtFactory extends EnrichMediatorFactory {
             OMAttribute xpathAttr = sourceEle.getAttribute(ATT_XPATH);
             if (xpathAttr != null && xpathAttr.getAttributeValue() != null) {
                 try {
-                    source.setXpath(SynapseXPathFactory.getSynapseXPath(sourceEle, ATT_XPATH));
+                    source.setXpath(SynapsePathFactory.getSynapsePath(sourceEle, ATT_XPATH));
                 } catch (JaxenException e) {
                     // If the xPath is not a valid synapse xpath this will add the invalid xpath to the model
                     source.setXpath(SynapseXPathExt.createSynapsePath(xpathAttr.getAttributeValue()));
